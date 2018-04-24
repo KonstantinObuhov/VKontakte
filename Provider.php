@@ -9,7 +9,7 @@ use SocialiteProviders\Manager\OAuth2\User;
 
 class Provider extends AbstractProvider implements ProviderInterface
 {
-    protected $fields = ['uid', 'email', 'first_name', 'last_name', 'screen_name', 'photo'];
+    protected $fields = ['uid', 'email', 'first_name', 'last_name', 'screen_name', 'photo_200'];
 
     /**
      * Unique Provider Identifier.
@@ -54,7 +54,7 @@ class Provider extends AbstractProvider implements ProviderInterface
         $lang = $this->getConfig('lang');
         $lang = $lang ? '&language='.$lang : '';
         $response = $this->getHttpClient()->get(
-            'https://api.vk.com/method/users.get?access_token='.$token.'&fields='.implode(',', $this->fields).$lang.'&v=3.0'
+            'https://api.vk.com/method/users.get?access_token='.$token.'&fields='.implode(',', $this->fields).$lang.'&v=5.69'
         );
 
         $contents = $response->getBody()->getContents();
